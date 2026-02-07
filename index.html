@@ -3,137 +3,112 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine's Invite for Sbonga 💖</title>
+<title>Valentine Invite 💖</title>
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-        background: linear-gradient(135deg, #ffc1cc, #ff4d6d);
-        font-family: 'Montserrat', sans-serif;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        overflow: hidden;
-        position: relative;
-        text-align: center;
-        color: #fff;
-    }
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    font-family:'Montserrat',sans-serif;
+    background:linear-gradient(135deg,#ff8fb1,#ff4d6d);
+    color:#fff;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    overflow:hidden;
+}
 
-    h1 {
-        font-family: 'Pacifico', cursive;
-        font-size: 2.8rem;
-        text-shadow: 2px 2px 10px #ff0000;
-        margin-bottom: 30px;
-        padding: 0 10px;
-    }
+/* Title */
+h1{
+    font-family:'Pacifico',cursive;
+    font-size:2.8rem;
+    margin-bottom:30px;
+}
 
-    .button-container {
-        position: relative;
-        width: 90%;
-        max-width: 400px;
-        height: 220px;
-        margin-bottom: 40px;
-    }
+/* Buttons */
+.button-container{
+    position:relative;
+    width:90%;
+    max-width:400px;
+    height:220px;
+}
+button{
+    position:absolute;
+    padding:16px 36px;
+    font-size:1.3rem;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+    background:rgba(255,255,255,.18);
+    backdrop-filter:blur(10px);
+    color:#fff;
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+    transition:.4s ease;
+    font-weight:600;
+}
+#yesBtn{left:35%;top:50%;transform:translate(-50%,-50%)}
+#noBtn{left:65%;top:50%;transform:translate(-50%,-50%);border:2px solid #fff}
 
-    button {
-        padding: 14px 30px;
-        font-size: 1.4rem;
-        border: none;
-        border-radius: 20px;
-        cursor: pointer;
-        position: absolute;
-        transition: all 0.3s ease;
-        box-shadow: 2px 4px 15px rgba(0,0,0,0.3);
-        font-family: 'Montserrat', sans-serif;
-    }
+/* Cards */
+.card{
+    display:none;
+    position:fixed;
+    top:45%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    max-width:90%;
+    max-height:80vh;
+    overflow-y:auto;
+    background:rgba(0,0,0,.35);
+    padding:30px;
+    border-radius:25px;
+    backdrop-filter:blur(15px);
+    box-shadow:0 15px 40px rgba(0,0,0,.6);
+    z-index:10;
+}
+.card.show{display:block;animation:pop .6s ease forwards}
+@keyframes pop{
+    from{opacity:0;transform:translate(-50%,-55%) scale(.85)}
+    to{opacity:1;transform:translate(-50%,-50%) scale(1)}
+}
+.card img{
+    max-width:160px;
+    border-radius:20px;
+    margin-bottom:15px;
+}
+.card p{font-size:1.2rem;line-height:1.6}
 
-    #yesBtn {
-        background-color: #ff4d6d;
-        color: #fff;
-        left: 35%;
-        top: 50%;
-        transform: translate(-50%, -50%) scale(1);
-    }
+/* Loader */
+.loader{
+    width:50px;height:50px;
+    border:4px solid rgba(255,255,255,.3);
+    border-top:4px solid #fff;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin:20px auto;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-    #noBtn {
-        background-color: #fff;
-        color: #ff4d6d;
-        border: 3px solid #ff4d6d;
-        left: 65%;
-        top: 50%;
-        transform: translate(-50%, -50%) scale(1);
-    }
-
-    .confetti {
-        position: absolute;
-        font-size: 22px;
-        pointer-events: none;
-        animation: fall 3s linear forwards;
-    }
-
-    @keyframes fall {
-        0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
-        100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-    }
-
-    #poemContainer {
-        display: none;
-        text-align: center;
-        max-width: 90%;
-        background: rgba(255, 255, 255, 0.15);
-        padding: 25px;
-        border-radius: 20px;
-        box-shadow: 2px 2px 25px rgba(0,0,0,0.3);
-        backdrop-filter: blur(5px);
-    }
-
-    #poemContainer img {
-        max-width: 200px;
-        margin-bottom: 20px;
-        border-radius: 15px;
-        border: 3px solid #fff;
-        box-shadow: 2px 2px 12px rgba(0,0,0,0.3);
-    }
-
-    #poemContainer p {
-        font-size: 1.4rem;
-        line-height: 1.6;
-        color: #fff;
-        margin-top: 0;
-        font-family: 'Montserrat', sans-serif;
-    }
-
-    .sparkle {
-        position: absolute;
-        width: 6px;
-        height: 6px;
-        background: #fff;
-        border-radius: 50%;
-        opacity: 0.8;
-        pointer-events: none;
-        animation: sparkleAnim linear infinite;
-    }
-
-    @keyframes sparkleAnim {
-        0% { transform: translateY(0) scale(1); opacity: 0.8; }
-        50% { transform: translateY(-20px) scale(1.2); opacity: 1; }
-        100% { transform: translateY(0) scale(1); opacity: 0.8; }
-    }
-
-    @media (max-width: 480px) {
-        h1 { font-size: 2rem; }
-        button { font-size: 1.1rem; padding: 12px 20px; }
-        #poemContainer p { font-size: 1.2rem; }
-        #poemContainer img { max-width: 150px; }
-    }
+/* Sound toggle */
+#soundToggle{
+    position:fixed;
+    top:15px;
+    right:15px;
+    font-size:1.3rem;
+    cursor:pointer;
+    opacity:.8;
+}
+small{opacity:.7}
 </style>
 </head>
+
 <body>
+
+<div id="soundToggle">🔊</div>
 
 <h1>Will you be my Valentine, Sbonga? 💌</h1>
 
@@ -142,86 +117,111 @@
     <button id="noBtn">No</button>
 </div>
 
-<div id="poemContainer">
-    <img src="yes.png" alt="Yes! 💖">
-    <p>
-        Sbonga, my love, like stars that light the night, <br>
-        You make my world so warm and bright. <br>
-        My heart is yours, forever true, <br>
-        Every beat says I love you. 💌
-    </p>
+<!-- AI Analysis -->
+<div id="aiCard" class="card">
+    <h2>Analyzing Love 💗</h2>
+    <div class="loader"></div>
+    <p id="aiText">Scanning heart compatibility…</p>
 </div>
 
+<!-- Result -->
+<div id="resultCard" class="card">
+    <img src="yes.png">
+    <h2 id="percent">0%</h2>
+    <p id="matchText"></p>
+    <p id="hiddenMsg" style="display:none;margin-top:15px;">
+        I didn’t need AI to know… it’s always been you 💖
+    </p>
+    <small>Swipe down to close</small>
+</div>
+
+<audio id="loveSound" preload="auto">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5e7b8f9f07.mp3">
+</audio>
+
 <script>
-    const yesBtn = document.getElementById('yesBtn');
-    const noBtn = document.getElementById('noBtn');
-    const container = document.querySelector('.button-container');
-    const poemContainer = document.getElementById('poemContainer');
+const yesBtn=noBtn=null;
+const yes=document.getElementById('yesBtn');
+const no=document.getElementById('noBtn');
+const ai=document.getElementById('aiCard');
+const result=document.getElementById('resultCard');
+const percentEl=document.getElementById('percent');
+const matchText=document.getElementById('matchText');
+const sound=document.getElementById('loveSound');
+const toggle=document.getElementById('soundToggle');
 
-    let yesSize = 1;
-    let noSize = 1;
+let soundOn=true,yesSize=1,noSize=1,noTexts=[
+"No","Are you sure?","Please?","Think again 😭","Okay fine 😔"
+],noIndex=0;
 
-    // Sparkles
-    function createSparkles(count=40){
-        for(let i=0;i<count;i++){
-            const sparkle=document.createElement('div');
-            sparkle.className='sparkle';
-            sparkle.style.left=Math.random()*window.innerWidth+'px';
-            sparkle.style.top=Math.random()*window.innerHeight+'px';
-            sparkle.style.width=sparkle.style.height=(2+Math.random()*4)+'px';
-            sparkle.style.animationDuration=(1+Math.random()*2)+'s';
-            document.body.appendChild(sparkle);
-        }
-    }
-    createSparkles();
+/* Sound toggle */
+toggle.onclick=()=>{
+ soundOn=!soundOn;
+ toggle.textContent=soundOn?"🔊":"🔇";
+};
 
-    // Confetti hearts
-    function createConfetti(){
-        const confettiCount=50;
-        for(let i=0;i<confettiCount;i++){
-            const heart=document.createElement('div');
-            heart.className='confetti';
-            heart.textContent='💖';
-            heart.style.left=Math.random()*window.innerWidth+'px';
-            heart.style.fontSize=(12+Math.random()*24)+'px';
-            document.body.appendChild(heart);
-            setTimeout(()=>heart.remove(),3000);
-        }
-    }
+/* Yes */
+yes.onclick=()=>{
+ if(soundOn) sound.play().catch(()=>{});
+ navigator.vibrate?.([40,30,40]);
+ yes.style.display=no.style.display='none';
+ ai.classList.add('show');
 
-    // Yes button click
-    yesBtn.addEventListener('click',()=>{
-        createConfetti();
-        poemContainer.style.display='block';
-        yesBtn.style.display='none';
-        noBtn.style.display='none';
-    });
+ let msgs=[
+  "Scanning heart compatibility…",
+  "Calculating butterflies…",
+  "Cross-checking destiny…",
+  "Finalizing result…"
+ ];
+ let i=0;
+ let interval=setInterval(()=>{
+  document.getElementById('aiText').textContent=msgs[i++]||"Done!";
+  if(i===msgs.length){
+   clearInterval(interval);
+   setTimeout(showResult,800);
+  }
+ },900);
+};
 
-    // Move No button on hover/touch, shrink it by 20%, grow Yes by 30%
-    function interactNoButton(){
-        yesSize *= 1.3;
-        yesBtn.style.transform=`translate(-50%, -50%) scale(${yesSize})`;
+function showResult(){
+ ai.classList.remove('show');
+ result.classList.add('show');
 
-        noSize *= 0.8;
-        noBtn.style.transform=`translate(-50%, -50%) scale(${noSize})`;
+ let score=97;
+ let current=0;
+ let counter=setInterval(()=>{
+  percentEl.textContent=current+"%";
+  if(current++>=score){
+   clearInterval(counter);
+   matchText.innerHTML="Perfect Match 💍<br>Official Valentine Material 💖";
+   setTimeout(()=>document.getElementById('hiddenMsg').style.display='block',5000);
+  }
+ },30);
+}
 
-        // Move No button randomly within container
-        const containerWidth = container.clientWidth - noBtn.offsetWidth;
-        const containerHeight = container.clientHeight - noBtn.offsetHeight;
-        const randomX = Math.random() * containerWidth;
-        const randomY = Math.random() * containerHeight;
-        noBtn.style.left = `${randomX}px`;
-        noBtn.style.top = `${randomY}px`;
-    }
+/* No button tease */
+function tease(){
+ navigator.vibrate?.(25);
+ yesSize*=1.3;
+ noSize*=.8;
+ yes.style.transform=`translate(-50%,-50%) scale(${yesSize})`;
+ no.style.transform=`translate(-50%,-50%) scale(${noSize})`;
+ no.textContent=noTexts[Math.min(noIndex++,noTexts.length-1)];
+ no.style.left=Math.random()*260+"px";
+ no.style.top=Math.random()*140+"px";
+}
+no.onmouseenter=tease;
+no.ontouchstart=e=>{e.preventDefault();tease();};
 
-    // Desktop hover
-    noBtn.addEventListener('mouseenter', interactNoButton);
-
-    // Mobile touch
-    noBtn.addEventListener('touchstart', (e)=>{
-        e.preventDefault();
-        interactNoButton();
-    });
+/* Swipe down to close */
+let startY=0;
+result.addEventListener('touchstart',e=>startY=e.touches[0].clientY);
+result.addEventListener('touchmove',e=>{
+ if(e.touches[0].clientY-startY>120){
+  result.classList.remove('show');
+  yes.style.display=no.style.display='block';
+ }
+});
 </script>
 
 </body>
